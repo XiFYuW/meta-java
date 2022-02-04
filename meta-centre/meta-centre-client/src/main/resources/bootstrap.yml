@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: meta-centre-client
+  profiles:
+    active: dev
+

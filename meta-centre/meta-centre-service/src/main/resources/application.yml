@@ -1,0 +1,19 @@
+server:
+  port: 7070
+
+spring:
+  application:
+    name: meta-centre-service
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: localhost:8848
+        group: centre
+    config:
+      server:
+        git:
+          uri: https://github.com/fangjian0423/blogimages
+          search-paths: /
+
