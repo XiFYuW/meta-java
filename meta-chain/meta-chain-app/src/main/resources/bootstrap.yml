@@ -1,22 +1,22 @@
 server:
-  port: 7071
+  port: 8081
 spring:
   application:
-    name: meta-centre-client
+    name: meta-chain-app
   cloud:
     nacos:
       username: nacos
       password: nacos
       discovery:
         server-addr: localhost:8848
-        group: centre
+        group: chain
     config:
       discovery:
         enabled: true
-        service-id: meta-centre-client
+        service-id: meta-chain-app
       name: ${spring.application.name}
       uri: http://localhost:7070
       profile: ${spring.profiles.active}
-      label: client
+      label: chain
   profiles:
     active: dev

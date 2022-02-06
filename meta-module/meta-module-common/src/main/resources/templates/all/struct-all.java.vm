@@ -1,0 +1,14 @@
+package ${cfg.structPackage};
+
+import ${cfg.dtoPackage}.${entity}AddDTO;
+import ${cfg.dtoPackage}.${entity}UpdateDTO;
+import ${package.Entity}.${entity};
+import org.mapstruct.ReportingPolicy;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface ${entity}Struct {
+    ${entity} toBy${entity}UpdateDTO(${entity}UpdateDTO updateDTO);
+
+    ${entity} toBy${entity}AddDTO(${entity}AddDTO addDTO);
+}

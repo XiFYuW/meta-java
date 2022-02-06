@@ -1,0 +1,28 @@
+package ${cfg.dtoPackage};
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.Date;
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+public class ${entity}${cfg.addDTO} {
+#foreach($field in ${table.fields})
+    #if(!${field.keyIdentityFlag})
+        #if("$!field.comment" != "")
+            #if(${swagger2})
+    @ApiModelProperty(value = "${field.comment}")
+            #else
+            /**
+             * ${field.comment}
+             */
+            #end
+        #end
+    private ${field.propertyType} ${field.propertyName};
+
+    #end
+#end
+}

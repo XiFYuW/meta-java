@@ -2,6 +2,8 @@ server:
   port: 7070
 
 spring:
+  profiles:
+    active: dev
   application:
     name: meta-centre-service
   cloud:
@@ -14,6 +16,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/fangjian0423/blogimages
-          search-paths: /
-
+          uri: https://github.com/XiFYuW/meta-java
+          searchPaths: /meta-centre/auto-centre/client,/meta-centre/auto-centre/chain
+          force-pull: true
+      discovery:
+        service-id: meta-centre-service

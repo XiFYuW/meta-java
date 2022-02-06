@@ -1,0 +1,79 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import ${cfg.dtoPackage}.*;
+import ${cfg.structPackage}.${entity}Struct;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.base.exception.HintRuntimeException;
+import com.base.result.PageUtils;
+import com.base.result.ResponseResult;
+import com.base.result.ResponseResultUtils;
+import java.util.Map;
+import java.util.Optional;
+/**
+ * $!{table.comment}
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+    private final ${entity}Struct struct;
+
+    public ${table.serviceImplName}(${entity}Struct struct) {
+        this.struct = struct;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponseResult lists(${entity}${cfg.listDTO} listDTO) {
+        final Map<String, Object> data = PageUtils.getDateMap(() -> page(
+                PageUtils.getPage(new Page<>(), listDTO.getOffset(), listDTO.getLimit()),
+                new LambdaQueryWrapper<${entity}>().eq(${entity}::getIsDel, false).orderByDesc(${entity}::getId))
+        );
+        return ResponseResultUtils.getResponseResultDataS(data);
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult update(${entity}${cfg.updateDTO} updateDTO) {
+        Optional.ofNullable(this.baseMapper.selectById(updateDTO.getId())).orElseThrow(() -> new HintRuntimeException("记录不存在"));
+        ${entity} entity = struct.toBy${entity}UpdateDTO(updateDTO);
+        entity.setUpdateTime(DateUtil.date());
+        this.baseMapper.updateById(entity);
+        return ResponseResultUtils.getResponseResultS("修改成功");
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult add(${entity}${cfg.addDTO} addDTO) {
+        ${entity} entity = struct.toBy${entity}AddDTO(addDTO);
+        entity.setCreateTime(DateUtil.date());
+        this.baseMapper.insert(entity);
+        return ResponseResultUtils.getResponseResultS("添加成功");
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult del(${entity}${cfg.delDTO} delDTO) {
+        ${entity} entity = Optional.ofNullable(this.baseMapper.selectById(delDTO.getId())).orElseThrow(() -> new HintRuntimeException("记录不存在"));
+        entity.setIsDel(true);
+        entity.setUpdateTime(DateUtil.date());
+        this.baseMapper.updateById(entity);
+        return ResponseResultUtils.getResponseResultS("删除成功");
+    }
+}
+#end

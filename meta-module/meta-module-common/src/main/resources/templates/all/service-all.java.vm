@@ -1,0 +1,26 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+import ${cfg.dtoPackage}.*;
+import com.base.result.ResponseResult;
+/**
+ * $!{table.comment}
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    ResponseResult lists(${entity}${cfg.listDTO} listDTO);
+
+    ResponseResult update(${entity}${cfg.updateDTO} updateDTO);
+
+    ResponseResult add(${entity}${cfg.addDTO} addDTO);
+
+    ResponseResult del(${entity}${cfg.delDTO} delDTO);
+}
+#end

@@ -1,0 +1,93 @@
+package ${package.Controller};
+
+import org.springframework.web.bind.annotation.RequestMapping;
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
+import ${cfg.dtoPackage}.*;
+import com.base.result.ResponseResult;
+import io.swagger.annotations.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import com.base.aop.IsWebLoginAn;
+/**
+ * $!{table.comment}
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+@Api(tags = "$!{table.comment}")
+public class ${table.controllerName} {
+#end
+    private final ${table.serviceName} service;
+
+    public ${table.controllerName}(${table.serviceName} service) {
+        this.service = service;
+    }
+
+    @ApiOperation("$!{table.comment}列表")
+    @PostMapping("/g")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK", response = ${entity}.class),
+    })
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
+    })
+    @IsWebLoginAn
+    public ResponseResult lists(@Validated @RequestBody ${entity}${cfg.listDTO} listDTO) {
+        return service.lists(listDTO);
+    }
+
+    @ApiOperation("修改$!{table.comment}")
+    @PostMapping("/u")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
+    })
+    @IsWebLoginAn
+    public ResponseResult update(@Validated @RequestBody ${entity}${cfg.updateDTO} updateDTO) {
+        return service.update(updateDTO);
+    }
+
+    @ApiOperation("添加$!{table.comment}")
+    @PostMapping("/a")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
+    })
+    @IsWebLoginAn
+    public ResponseResult add(@Validated @RequestBody ${entity}${cfg.addDTO} addDTO) {
+        return service.add(addDTO);
+    }
+
+    @ApiOperation("删除$!{table.comment}")
+    @PostMapping("/d")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
+    })
+    @IsWebLoginAn
+    public ResponseResult del(@Validated @RequestBody ${entity}${cfg.delDTO} delDTO) {
+        return service.del(delDTO);
+    }
+}
+
+#end
