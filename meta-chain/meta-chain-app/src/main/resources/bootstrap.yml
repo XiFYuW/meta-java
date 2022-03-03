@@ -1,6 +1,6 @@
-server:
-  port: 8081
 spring:
+  profiles:
+    active: dev
   application:
     name: meta-chain-app
   cloud:
@@ -8,15 +8,14 @@ spring:
       username: nacos
       password: nacos
       discovery:
-        server-addr: localhost:8848
+        server-addr: 127.0.0.1:8848
+        namespace: ${spring.profiles.active}
+        group: chain
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: ${spring.profiles.active}
         group: chain
     config:
       discovery:
-        enabled: true
-        service-id: meta-chain-app
-      name: ${spring.application.name}
-      uri: http://localhost:7070
-      profile: ${spring.profiles.active}
-      label: chain
-  profiles:
-    active: dev
+        enabled: false
