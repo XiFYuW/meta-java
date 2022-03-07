@@ -1,8 +1,6 @@
 package com.meta.chain.app.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.meta.chain.mama.model.SaleOrder;
+import com.meta.chain.mama.model.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +16,6 @@ public class MongoDBTestApiController {
 
     @GetMapping
     public String save() {
-        mongoTemplate.save(new SaleOrder(1L));
-        return "ok";
+        return mongoTemplate.save(new Test(1L)).toString();
     }
 }
