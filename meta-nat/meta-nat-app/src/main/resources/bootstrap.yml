@@ -1,18 +1,18 @@
 spring:
   profiles:
-    active: dev
+    active: @profile@
   application:
     name: meta-nat-app
   cloud:
     nacos:
-      username: nacos
-      password: nacos
+      username: @nacos.username@
+      password: @nacos.password@
       discovery:
-        server-addr: 124.222.138.201:8848
+        server-addr: @nacos.server-addr@
         namespace: ${spring.profiles.active}
         group: nat
       config:
-        server-addr: 124.222.138.201:8848
+        server-addr: @nacos.server-addr@
         file-extension: yaml
         namespace: ${spring.profiles.active}
         group: nat

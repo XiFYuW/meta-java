@@ -20,14 +20,17 @@
         <maven.compiler.target>1.9</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Spring Cloud -->
-        <spring.cloud.version>2020.0.1</spring.cloud.version>
+        <profile>dev</profile>
+        <nacos.username>nacos</nacos.username>
+        <nacos.password>nacos</nacos.password>
+        <nacos.server-addr>124.222.138.201:8848</nacos.server-addr>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
+        <version>2.6.3</version>
+        <relativePath/>
     </parent>
 
     <dependencies>
@@ -82,19 +85,17 @@
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>2021.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2021.1</version>
+                <version>2021.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -114,5 +115,13 @@
         </repository>
     </repositories>
 
-
+    <build>
+        <!-- yaml @@ 配置-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>
