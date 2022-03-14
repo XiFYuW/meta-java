@@ -1,5 +1,7 @@
-package com.meta.chain.mama.model;
+package com.meta.chain.mama.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -17,10 +19,17 @@ public class MatchmakingPend implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "id")
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "用户ID")
     private String uid;
+
+    @ApiModelProperty(value = "邮箱")
+    private String mail;
+
+    @ApiModelProperty(value = "手机号")
+    private String mobile;
 
     @ApiModelProperty(value = "0.撮合中 1.撮合成功 2.撮合取消")
     private Integer status;

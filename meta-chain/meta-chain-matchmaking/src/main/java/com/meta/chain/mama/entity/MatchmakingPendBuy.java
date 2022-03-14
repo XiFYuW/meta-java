@@ -1,10 +1,9 @@
-package com.meta.chain.mama.model;
+package com.meta.chain.mama.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
 * 撮合交易买入挂单
@@ -15,8 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="MatchmakingPendBuy对象", description="撮合交易买入挂单")
+//@Builder
 @NoArgsConstructor
-@Document(collection="Matchmaking_pend_buy")
+//@AllArgsConstructor
 public class MatchmakingPendBuy extends MatchmakingPend {
 
 }

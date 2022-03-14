@@ -1,42 +1,38 @@
-package com.meta.chain.mama.model;
-
-import io.swagger.annotations.ApiModel;
+package com.meta.chain.mama.dto.matchmakingConfig;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
-* 撮合交易配置
-*
-* @author admin
-* @since 2022-02-21
-*/
-@Data
-@EqualsAndHashCode(callSuper = false)
-@ApiModel(value="MatchmakingConfig对象", description="撮合交易配置")
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="matchmaking_config")
-public class MatchmakingConfig implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty(value = "id")
-    private Integer id;
-
-    @ApiModelProperty(value = "别名(卖出对名称/买入对名称)")
+@NoArgsConstructor
+@Setter
+@Getter
+public class MatchmakingConfigAddDTO {
+    @ApiModelProperty(value = "别名")
     private String alias;
 
     @ApiModelProperty(value = "卖出对")
     private Integer sale;
 
+    @ApiModelProperty(value = "卖出对名称")
+    private String saleName;
+
+    @ApiModelProperty(value = "卖出对包指令")
+    private String saleInstruct;
+
     @ApiModelProperty(value = "买入对")
     private Integer buy;
+
+    @ApiModelProperty(value = "买入对名称")
+    private String buyName;
+
+    @ApiModelProperty(value = "买入对包指令")
+    private String buyInstruct;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -64,9 +60,5 @@ public class MatchmakingConfig implements Serializable {
 
     @ApiModelProperty(value = "买卖最低委托量")
     private BigDecimal minNumber;
-
-    @ApiModelProperty(value = "初始价格")
-    private BigDecimal initPrice;
-
 
 }
