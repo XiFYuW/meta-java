@@ -90,8 +90,8 @@ public class MatchmakingPendSaleServiceImpl extends ServiceImpl<MatchmakingPendS
         try {
             List<MatchmakingPendSale> data = this.getBaseMapper().selectList(new LambdaQueryWrapper<MatchmakingPendSale>()
                     .select(MatchmakingPendSale::getId, MatchmakingPendSale::getAmount, MatchmakingPendSale::getTurnover,
-                            MatchmakingPendSale::getUid, MatchmakingPendSale::getMail, MatchmakingPendSale::getMobile,
-                            MatchmakingPendSale::getDifference, MatchmakingPendSale::getIntentional, MatchmakingPendSale::getFreeze)
+                            MatchmakingPendSale::getUid, MatchmakingPendSale::getDifference, MatchmakingPendSale::getIntentional,
+                            MatchmakingPendSale::getFreeze)
                     .eq(MatchmakingPendSale::getStatus, 0)
                     .eq(MatchmakingPendSale::getIntentional, intentional)
                     .eq(MatchmakingPendSale::getAmount, number)
@@ -117,8 +117,7 @@ public class MatchmakingPendSaleServiceImpl extends ServiceImpl<MatchmakingPendS
         try {
            return this.getBaseMapper().selectList(new LambdaQueryWrapper<MatchmakingPendSale>()
                     .select(MatchmakingPendSale::getId, MatchmakingPendSale::getAmount, MatchmakingPendSale::getTurnover,
-                            MatchmakingPendSale::getUid, MatchmakingPendSale::getMail, MatchmakingPendSale::getMobile,
-                            MatchmakingPendSale::getDifference, MatchmakingPendSale::getIntentional, MatchmakingPendSale::getFreeze)
+                            MatchmakingPendSale::getUid, MatchmakingPendSale::getDifference, MatchmakingPendSale::getIntentional, MatchmakingPendSale::getFreeze)
                     .eq(MatchmakingPendSale::getStatus, 0)
                     .ge(MatchmakingPendSale::getIntentional, latestPrice)
                     .orderByAsc(MatchmakingPendSale::getIntentional)

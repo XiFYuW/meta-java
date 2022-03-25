@@ -25,12 +25,6 @@ public class MatchmakingPend implements Serializable {
     @ApiModelProperty(value = "用户ID")
     private String uid;
 
-    @ApiModelProperty(value = "邮箱")
-    private String mail;
-
-    @ApiModelProperty(value = "手机号")
-    private String mobile;
-
     @ApiModelProperty(value = "0.撮合中 1.撮合成功 2.撮合取消")
     private Integer status;
 

@@ -89,8 +89,7 @@ public class MatchmakingPendBuyServiceImpl extends ServiceImpl<MatchmakingPendBu
         try {
             List<MatchmakingPendBuy> data = this.getBaseMapper().selectList(new LambdaQueryWrapper<MatchmakingPendBuy>()
                     .select(MatchmakingPendBuy::getId, MatchmakingPendBuy::getAmount, MatchmakingPendBuy::getTurnover,
-                            MatchmakingPendBuy::getUid, MatchmakingPendBuy::getMail, MatchmakingPendBuy::getMobile,
-                            MatchmakingPendBuy::getDifference, MatchmakingPendBuy::getIntentional, MatchmakingPendBuy::getFreeze)
+                            MatchmakingPendBuy::getUid, MatchmakingPendBuy::getDifference, MatchmakingPendBuy::getIntentional, MatchmakingPendBuy::getFreeze)
                     .eq(MatchmakingPendBuy::getStatus, 0)
                     .eq(MatchmakingPendBuy::getIntentional, intentional)
                     .eq(MatchmakingPendBuy::getAmount, number)
@@ -116,8 +115,7 @@ public class MatchmakingPendBuyServiceImpl extends ServiceImpl<MatchmakingPendBu
         try {
             return this.getBaseMapper().selectList(new LambdaQueryWrapper<MatchmakingPendBuy>()
                     .select(MatchmakingPendBuy::getId, MatchmakingPendBuy::getAmount, MatchmakingPendBuy::getTurnover,
-                            MatchmakingPendBuy::getUid, MatchmakingPendBuy::getMail, MatchmakingPendBuy::getMobile,
-                            MatchmakingPendBuy::getDifference, MatchmakingPendBuy::getIntentional, MatchmakingPendBuy::getFreeze)
+                            MatchmakingPendBuy::getUid, MatchmakingPendBuy::getDifference, MatchmakingPendBuy::getIntentional, MatchmakingPendBuy::getFreeze)
                     .eq(MatchmakingPendBuy::getStatus, 0)
                     .le(MatchmakingPendBuy::getIntentional, latestPrice)
                     .orderByDesc(MatchmakingPendBuy::getIntentional)

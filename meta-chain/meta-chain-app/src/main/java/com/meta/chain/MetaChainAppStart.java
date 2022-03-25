@@ -1,4 +1,4 @@
-package com.meta.chain.app;
+package com.meta.chain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -33,12 +33,6 @@ public class MatchmakingDealOrder implements Serializable {
     @ApiModelProperty(value = "用户ID")
     private String uid;
 
-    @ApiModelProperty(value = "邮箱")
-    private String mail;
-
-    @ApiModelProperty(value = "手机号")
-    private String mobile;
-
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 

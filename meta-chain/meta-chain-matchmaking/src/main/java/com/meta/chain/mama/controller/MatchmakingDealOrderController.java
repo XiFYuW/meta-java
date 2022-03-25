@@ -1,9 +1,6 @@
 package com.meta.chain.mama.controller;
 
-import com.meta.chain.mama.dto.matchmakingDealOrder.MatchmakingDealOrderAddDTO;
-import com.meta.chain.mama.dto.matchmakingDealOrder.MatchmakingDealOrderDelDTO;
 import com.meta.chain.mama.dto.matchmakingDealOrder.MatchmakingDealOrderListDTO;
-import com.meta.chain.mama.dto.matchmakingDealOrder.MatchmakingDealOrderUpdateDTO;
 import com.meta.chain.mama.entity.MatchmakingDealOrder;
 import com.meta.chain.mama.service.IMatchmakingDealOrderService;
 import com.meta.module.common.result.ResponseResult;
@@ -40,33 +37,6 @@ public class MatchmakingDealOrderController {
     })
     public ResponseResult lists(@Validated @RequestBody MatchmakingDealOrderListDTO listDTO) {
         return service.lists(listDTO);
-    }
-
-    @ApiOperation("修改撮合交易订单(交易方)")
-    @PostMapping("/u")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
-    })
-    public ResponseResult update(@Validated @RequestBody MatchmakingDealOrderUpdateDTO updateDTO) {
-        return service.update(updateDTO);
-    }
-
-    @ApiOperation("添加撮合交易订单(交易方)")
-    @PostMapping("/a")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
-    })
-    public ResponseResult add(@Validated @RequestBody MatchmakingDealOrderAddDTO addDTO) {
-        return service.add(addDTO);
-    }
-
-    @ApiOperation("删除撮合交易订单(交易方)")
-    @PostMapping("/d")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "wt", dataType = "String", required = true, value = "token"),
-    })
-    public ResponseResult del(@Validated @RequestBody MatchmakingDealOrderDelDTO delDTO) {
-        return service.del(delDTO);
     }
 }
 
