@@ -12,12 +12,12 @@
         <module>meta-module</module>
         <module>meta-chain</module>
         <module>meta-nat</module>
+        <module>meta-user</module>
     </modules>
 
     <properties>
-        <java.version>1.9</java.version>
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <profile>dev</profile>

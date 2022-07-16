@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
@@ -22,13 +21,13 @@ import java.util.Map;
 public class CodeGeneratorAll {
 
     public static void main(String[] args) {
-        String outputDir = "/meta-module/meta-module-common/src/main/java";
+        String outputDir = "/meta-user/meta-user-basic/src/main/java";
         String author = "admin";
-        String parentPackage = "com.meta.module.common";
-        String dtoPackage = "com.meta.module.common.dto.fcOrderUSes";
-        String structPackage = "com.meta.module.common.struct";
-        String mapperDir = "/meta-module/meta-module-common/src/main/resources/mappers/mq/";
-        String[] include = new String[]{"acn_basic"};
+        String parentPackage = "com.meta.user.basic";
+        String dtoPackage = "com.meta.user.basic.dto.basicUser";
+        String structPackage = "com.meta.user.basic.struct";
+        String mapperDir = "/meta-user/meta-user-basic/src/main/resources/mappers/basicUser/";
+        String[] include = new String[]{"basic_user"};
         genCode(outputDir, author, parentPackage, mapperDir, dtoPackage, structPackage, include);
     }
 
@@ -39,31 +38,12 @@ public class CodeGeneratorAll {
                                 String dtoPackage,
                                 String structPackage,
                                 String[] include){
-        // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
-        // 全局配置
-        GlobalConfig gc = new GlobalConfig();
+        mpg.setGlobalConfig(CodeDB.getGlobalConfig(outputDir, author));
+        mpg.setDataSource(CodeDB.getDataSourceConfig());
+        PackageConfig pc = CodeDB.getPackageConfig(parentPackage);
+        mpg.setPackageInfo(CodeDB.getPackageConfig(parentPackage));
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + outputDir);
-        gc.setAuthor(author);
-        gc.setOpen(false);
-        // 是否覆盖已有文件
-        gc.setFileOverride(true);
-        // 实体属性 Swagger2 注解
-        gc.setSwagger2(true);
-        gc.setDateType(DateType.ONLY_DATE);
-        mpg.setGlobalConfig(gc);
-        // 数据源配置
-        DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3308/acn?useUnicode=true&serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf8");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("root");
-        mpg.setDataSource(dsc);
-        // 包配置
-        PackageConfig pc = new PackageConfig();
-        pc.setParent(parentPackage);
-        mpg.setPackageInfo(pc);
 
         // 自定义配置
         InjectionConfig cfg = new InjectionConfig() {
